@@ -11,7 +11,7 @@ Allow me to practice Python and to do a cool project helping me to produce video
 - `output` is for the final video after the process.
 
 # Objectives
-- [ ] Can concatenate multiple videos
+- [x] Can concatenate multiple videos
 - [ ] Can add Intro and Outro
 - [ ] Can edit in several formats to share on medias
 
