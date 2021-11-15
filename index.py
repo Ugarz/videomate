@@ -1,5 +1,6 @@
 import os
 import subprocess
+import datetime
 
 media_in='./medias/input/'
 media_out= './medias/output/'
@@ -15,7 +16,7 @@ for subdirs, dirs, files in os.walk(media_in):
         extension=os.path.splitext(file)[-1].lower()
         if extension == ".zip":
             print("found a zip")
-            subprocess.run('unzip ./medias/input/mamie.zip -d ./medias/input', shell=True)
+            subprocess.run('unzip ./medias/input/archive.zip -d ./medias/input', shell=True)
 
 # Compress video files
 for subdirs, dirs, files in os.walk(media_in):
@@ -37,14 +38,15 @@ for subdirs, dirs, files in os.walk(media_in):
             print("compressing.." + cmd)
             subprocess.run(cmd, shell=True)
 
+video_files='./medias/input/compressed/mp4/video_files.txt'
 
 # list all videos in a text file
-if os.path.exists('./medias/input/compressed/mp4/video_files.txt'):
+if os.path.exists(video_files):
     print('Remove old video_files and create new video_files')
-    os.remove('./medias/input/compressed/mp4/video_files.txt')
+    os.remove(video_files)
 
 print('Create video_files list for you')
-with open('./medias/input/compressed/mp4/video_files.txt', 'a') as f:
+with open(video_files, 'a') as f:
     for root, directories, files in os.walk('./medias/input/compressed/mp4', topdown=False):
         for name in files:
             extension=os.path.splitext(name)[-1].lower()
@@ -52,5 +54,5 @@ with open('./medias/input/compressed/mp4/video_files.txt', 'a') as f:
                 f.write("file '" + name + "'" + "\n")
 print("List video files ready")
 
-# subprocess.run('ffmpeg -f concat -safe 0 -i ./medias/input/compressed/mp4/video_files.txt -c copy ./medias/output/out.mp4')
-subprocess.run(["bash", "./medias/input/build_video.sh"])
+subprocess.run('ffmpeg -f concat -i video_files -c copy ./medias/output/out.mp4')
+# subprocess.run(["bash", "./medias/input/build_video.sh"])
