@@ -1,4 +1,4 @@
-# Videomate
+# Videomate [WIP]
 
 A simple project to fasten my video editing process.
 
@@ -14,3 +14,6 @@ Allow me to practice Python and to do a cool project helping me to produce video
 - [ ] Can concatenate multiple videos
 - [ ] Can add Intro and Outro
 - [ ] Can edit in several formats to share on medias
+
+# Resources
+- [How to Run bash scripts Using Python?](https://geekflare.com/python-run-bash/)
